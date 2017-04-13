@@ -1,0 +1,2 @@
+$('#edit_comment_<%= @comment.id %>').remove();
+$('#issue_<%= @issue.id %>_comment_<%= @comment.id %>').replaceWith("<%= j render @comment %>");

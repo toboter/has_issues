@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-md-12">
+<p id="notice"><%= notice %></p>
+
+<h1>
+  Issues
+  <%= link_to 'New Issue', new_issue_path, class: 'btn btn-success pull-right' unless @issueable.blank? %>
+</h1>
+
+<table class="table table-hover" style="border: 1px solid #ddd;">
+  <thead>
+    <tr>
+      <th colspan="4">text</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @issues.each do |issue| %>
+      <tr>
+        <td><%= content_tag :span, '', class: "glyphicon #{issue.is_closed? ? 'glyphicon-exclamation-sign' : 'glyphicon-ok-circle'}", aria: {hidden: true} %></td>
+
+        <td>
+          <span style="font-size:16px; font-weight: 600;">
+            <%= link_to issue.issueable.name, [main_app, issue.issueable], class: 'text-muted' if @issueable.blank? %>
+            <%= link_to issue.title, issue %>
+          </span>
+          <p class="small text-muted">opend on <%= issue.created_at.to_formatted_s(:long_ordinal) %> by <%= issue.issuer.name %></p>
+        </td>
+        <td>a</td>
+        <td>
+          <% if issue.comments.count >= 1 %>
+            <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+            <%= content_tag :span, issue.comments.count, class: "small" %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+  </div>
+</div>

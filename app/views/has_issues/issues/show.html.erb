@@ -1,0 +1,65 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="page-header">
+      <h1>
+        <%= @issue.title %>
+        <%= link_to 'New Issue', new_issue_path, class: 'btn btn-sm btn-success pull-right' unless @issueable.blank? %>
+      </h1>
+      
+      <% if @issue.is_closed? %>
+        <%= link_to reopen_issue_path(@issue), method: :put, class: "btn btn-success" do %>
+          <span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span> 
+          Closed
+        <% end %>
+      <% else %>
+        <%= link_to close_issue_path(@issue), method: :put, class: "btn btn-success" do %>
+          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> 
+          Open
+        <% end %>
+      <% end %>
+      <span class="text-muted">
+        <strong>
+          <%= @issue.issuer.name %>
+        </strong> opened this issue on 
+        <%= @issue.created_at.to_formatted_s(:long_ordinal) %> · 
+        <%= pluralize(@issue.comments.count, 'comment') %>
+      </span>
+
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-9">
+    <div id="issue_comments">
+      <%= render @issue.comments %>
+    </div>
+
+    <%= content_tag :div, id: 'closed' do %>
+      <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span> 
+      <strong><%= @issue.closer.name %></strong> closed this 
+      <%= distance_of_time_in_words(@issue.closed_at, Time.now) %> ago
+    <% end if @issue.is_closed? %>
+    
+    <hr>
+    <%= link_to 'New comment', new_issue_comment_path(@issue), id: "new_comment_link", remote: true, class: 'btn btn-default btn-sm' %>
+  
+  </div>
+  <div class="col-md-3 small">
+    <h5>Assignees</h5>
+    <br>
+
+    <hr>
+    <h5>Labels</h5>
+    <br>
+
+    <hr>
+    <h5>Notifications</h5>
+    Subscribe<br>
+    You’re not receiving notifications from this thread.
+
+    <hr>
+    <h5><%= pluralize(@participants.count, 'participant') %></h5>
+    <%= @participants.map(&:name).join(', ') %>
+
+  </div>
+</div>

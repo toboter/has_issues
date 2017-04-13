@@ -1,0 +1,14 @@
+<div class="panel panel-default">
+  <%= simple_form_for [@issue, @comment], remote: true do |f| %>
+    <div class="panel-heading">
+      <%= f.error_notification %>
+      <%= f.hidden_field :issue_id %>
+    </div>
+
+    <div class="panel-body form-group">
+      <%= f.input :body, label: false %>
+
+      <%= f.button :submit, class: 'btn btn-success btn-sm pull-right' %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  issueable_id: 1
+  issueable_type: MyString
+  issuer_id: 1
+  issuer_type: MyString
+  title: MyString
+  closer_id: 1
+  closer_type: MyString
+  closed_at: 2017-04-10 16:43:40
+
+two:
+  issueable_id: 1
+  issueable_type: MyString
+  issuer_id: 1
+  issuer_type: MyString
+  title: MyString
+  closer_id: 1
+  closer_type: MyString
+  closed_at: 2017-04-10 16:43:40
