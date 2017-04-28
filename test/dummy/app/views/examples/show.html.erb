@@ -5,5 +5,9 @@
   <%= @example.name %>
 </p>
 
+<%= has_issue_track(@example) %>
+
+<%= link_to 'all issues', all_issues_path %> |
+
 <%= link_to 'Edit', edit_example_path(@example) %> |
 <%= link_to 'Back', examples_path %>

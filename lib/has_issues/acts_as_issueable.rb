@@ -18,8 +18,6 @@ module HasIssues
           has_many :issues, as: :issueable,
                             class_name: 'HasIssues::Issue'
 
-          validates_presence_of :issue
-
         end
       end
 

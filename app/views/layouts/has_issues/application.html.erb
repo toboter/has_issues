@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Has issues</title>
+  <title>
+    <% if content_for(:title) %>
+      <%= yield :title %> · 
+    <% end %>
+    <%= main_app_name %>
+  </title>
   <%= stylesheet_link_tag    "has_issues/application", media: "all" %>
   <%= javascript_include_tag "has_issues/application" %>
   <%= csrf_meta_tags %>

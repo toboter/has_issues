@@ -7,7 +7,7 @@ module HasIssues
 
     # GET /issues
     def index
-      @issues = @issueable.blank? ? Issue.all : @issueable.issues
+      @issues = @issueable.blank? ? Issue.order(created_at: :desc) : @issueable.issues
     end
 
     # GET /issues/1
@@ -18,11 +18,17 @@ module HasIssues
     # GET /issues/new
     def new
       @issue = Issue.new
+      @issue.comments.new
+    end
+
+    def edit
     end
 
     # POST /issues
     def create
       @issue = Issue.new(issue_params)
+      @issue.comments.first.creator = @user
+      @issue.comments.first.issue = @issue
       @issue.issuer = @user
       @issue.issueable = @issueable
 
@@ -98,7 +104,7 @@ module HasIssues
 
       # Only allow a trusted parameter "white list" through.
       def issue_params
-        params.require(:issue).permit(:issueable_id, :issueable_type, :issuer_id, :issuer_type, :title, :closed)
+        params.require(:issue).permit(:title, :closed, :comments_attributes => [:body])
       end
   end
 end

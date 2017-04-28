@@ -1,9 +1,15 @@
+<% content_for :title do %>
+  <%= @issue.title %> · <%= @issueable.name + ' · ' + @issueable.class.name + ' · ' if !@issueable.blank? %>Issues
+<% end %>
+
+
 <div class="row">
   <div class="col-md-12">
     <div class="page-header">
       <h1>
         <%= @issue.title %>
-        <%= link_to 'New Issue', new_issue_path, class: 'btn btn-sm btn-success pull-right' unless @issueable.blank? %>
+        <%= link_to 'New Issue', new_issue_path, class: 'btn btn-sm btn-success pull-right', style: 'margin-left: 5px;' unless @issueable.blank? %> 
+        <%= link_to 'Edit', edit_issue_path(@issue), class: 'btn btn-sm btn-default pull-right' if @issue.issuer == @user %>
       </h1>
       
       <% if @issue.is_closed? %>
@@ -41,8 +47,23 @@
     <% end if @issue.is_closed? %>
     
     <hr>
-    <%= link_to 'New comment', new_issue_comment_path(@issue), id: "new_comment_link", remote: true, class: 'btn btn-default btn-sm' %>
-  
+
+    <div class="panel panel-default">
+      <%= simple_form_for [@issue, @issue.comments.new] do |f| %>
+        <div class="panel-heading">
+          <%= f.error_notification %>
+          <%= f.hidden_field :issue_id %>
+        </div>
+
+        <div class="panel-body form-group">
+          <%= f.input :body, label: false, hint: 'Leave a comment', input_html: {class: 'col-xs-12', rows: '8', data: {provide: "markdown"}} %>
+          <%= f.button :submit, class: 'btn btn-success btn-sm pull-right' %>
+        </div>
+      <% end %>
+    </div>
+    <%= link_to 'Back to issues', issues_path %> | 
+    <%= link_to 'Back to issued object',[main_app, @issueable] %>
+    <br><br>
   </div>
   <div class="col-md-3 small">
     <h5>Assignees</h5>

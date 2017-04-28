@@ -1,5 +1,6 @@
 module HasIssues
   class Issue < ApplicationRecord
+
     belongs_to :closer, polymorphic: true
     belongs_to :issuer, polymorphic: true
     belongs_to :issueable, polymorphic: true
@@ -9,6 +10,8 @@ module HasIssues
 
     validates_presence_of :issueable, :unless => :is_closed?
     validates_presence_of :issuer, :unless => :is_closed?
+
+    accepts_nested_attributes_for :comments
 
     def ordered_comments(unfiltered = false)
       vc = unfiltered ? comments : filtered_comments

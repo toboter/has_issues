@@ -1,3 +1,7 @@
+<% content_for :title do %>
+  <%= @issueable.name + ' · ' + @issueable.class.name + ' · ' if !@issueable.blank? %>Issues
+<% end %>
+
 <div class="row">
   <div class="col-md-12">
 <p id="notice"><%= notice %></p>
@@ -17,12 +21,13 @@
   <tbody>
     <% @issues.each do |issue| %>
       <tr>
-        <td><%= content_tag :span, '', class: "glyphicon #{issue.is_closed? ? 'glyphicon-exclamation-sign' : 'glyphicon-ok-circle'}", aria: {hidden: true} %></td>
+        <td><%= content_tag :span, '', class: "glyphicon #{issue.is_closed? ? 'glyphicon-ok-circle' : 'glyphicon-exclamation-sign'}", aria: {hidden: true} %></td>
 
         <td>
           <span style="font-size:16px; font-weight: 600;">
             <%= link_to issue.issueable.name, [main_app, issue.issueable], class: 'text-muted' if @issueable.blank? %>
-            <%= link_to issue.title, issue %>
+            <%= link_to issue.title, issueable_issue_path(@issueable, issue) %>
+          
           </span>
           <p class="small text-muted">opend on <%= issue.created_at.to_formatted_s(:long_ordinal) %> by <%= issue.issuer.name %></p>
         </td>
@@ -37,6 +42,7 @@
     <% end %>
   </tbody>
 </table>
-
+<%= link_to 'Back to issued object', [main_app, @issueable] unless @issueable.blank? %><%= ' | ' unless @issueable.blank? %> 
+<%= link_to 'all issues', all_issues_path %> 
   </div>
 </div>

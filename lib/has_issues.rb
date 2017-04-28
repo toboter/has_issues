@@ -2,6 +2,7 @@ require "has_issues/engine"
 require 'has_issues/controllers'
 require 'bootstrap-sass'
 require 'simple_form'
+require 'redcarpet'
 
 module HasIssues
   # Can be set in initializer only
@@ -102,6 +103,7 @@ module HasIssues
   def self.comment_url(comment, routing_proxy)
     issueable_config(comment.issue.issueable).comment_url_proc.call(comment, routing_proxy)
   end
+
 end
 
 require 'has_issues/acts_as_issuer'
