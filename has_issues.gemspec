@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", "~> 5.0.0", ">= 5.0.0.1"
   s.add_dependency "jquery-rails"
+  s.add_dependency "turbolinks"
   s.add_dependency "bootstrap-sass", "~> 3.3.6"
   s.add_dependency "will_paginate-bootstrap"
   s.add_dependency "font-awesome-rails"

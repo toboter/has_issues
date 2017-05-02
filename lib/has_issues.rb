@@ -3,6 +3,7 @@ require 'has_issues/controllers'
 require 'bootstrap-sass'
 require 'simple_form'
 require 'redcarpet'
+require 'turbolinks'
 
 module HasIssues
   # Can be set in initializer only

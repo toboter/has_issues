@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    has_issues (0.1.0)
+    has_issues (0.2.0)
       bootstrap-sass (~> 3.3.6)
       font-awesome-rails
       jquery-rails
@@ -9,6 +9,7 @@ PATH
       redcarpet
       search_cop (~> 1.0.8)
       simple_form
+      turbolinks
       will_paginate-bootstrap
 
 GEM
@@ -131,6 +132,9 @@ GEM
     thread_safe (0.3.6)
     treetop (1.6.8)
       polyglot (~> 0.3)
+    turbolinks (5.0.1)
+      turbolinks-source (~> 5)
+    turbolinks-source (5.0.0)
     tzinfo (1.2.3)
       thread_safe (~> 0.1)
     websocket-driver (0.6.5)

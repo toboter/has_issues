@@ -11,11 +11,6 @@ And then execute:
 $ bundle
 ```
 
-Or install it yourself as:
-```bash
-$ gem install has_issues
-```
-
   Run the following command to copy has_issues's initializer and migration to your app:
 
   ```sh

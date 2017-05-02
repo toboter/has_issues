@@ -56,7 +56,7 @@
         </div>
 
         <div class="panel-body form-group">
-          <%= f.input :body, label: false, hint: 'Leave a comment', input_html: {class: 'col-xs-12', rows: '8', data: {provide: "markdown"}} %>
+          <%= f.input :body, label: false, input_html: {placeholder: "Leave a comment.", class: 'col-xs-12', rows: '8', data: {provide: "markdown"}} %>
           <%= f.button :submit, class: 'btn btn-success btn-sm pull-right' %>
         </div>
       <% end %>
