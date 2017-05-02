@@ -23,7 +23,6 @@ Gem::Specification.new do |s|
   s.add_dependency "will_paginate-bootstrap"
   s.add_dependency "font-awesome-rails"
   s.add_dependency "simple_form"
-  s.add_dependency "search_cop", "~> 1.0.8"
   s.add_dependency "redcarpet"
   
   
